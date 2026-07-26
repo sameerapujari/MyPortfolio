@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sameera | Software Engineer Portfolio</title>
+  <meta name="description" content="Personal Digital Workspace of Sameera - Information Technology Student focusing on Backend Systems, Microservices, API Design, and Developer Tools.">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrainsMono:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- ENHANCED DUAL CUSTOM CURSOR (DOT + RING) -->
+  <div id="custom-cursor-dot"></div>
+  <div id="custom-cursor-ring"></div>
+
+  <canvas id="bg-canvas"></canvas>
+
+  <!-- WORKSPACE LOADING SCREEN (3-4 SEC TARGET DURATION) -->
+  <div id="boot-screen">
+    <div class="boot-box">
+      <div class="boot-header">
+        <div class="boot-dots">
+          <span class="boot-dot red"></span>
+          <span class="boot-dot yellow"></span>
+          <span class="boot-dot green"></span>
+        </div>
+        <span style="font-size:0.78rem; color:var(--text-dim);">sameera_workspace.sh</span>
+      </div>
+      <div class="boot-terminal-lines" id="boot-console">
+        <!-- Rendered in app.js -->
+      </div>
+      <div class="boot-progress-bar-bg">
+        <div class="boot-progress-bar-fill" id="boot-progress"></div>
+      </div>
+      <button class="skip-boot-btn" id="skip-boot-btn">Skip [ESC]</button>
+    </div>
+  </div>
+
+  <!-- STICKY NAVBAR -->
+  <header class="navbar" id="navbar">
+    <a href="#home" class="nav-brand">
+      <div class="brand-icon">S</div>
+      <span>sameera<span style="color:var(--primary)">.dev</span></span>
+    </a>
+
+    <ul class="nav-menu">
+      <li><a href="#about" class="nav-link">About</a></li>
+      <li><a href="#skills" class="nav-link">Skills</a></li>
+      <li><a href="#projects" class="nav-link">Projects</a></li>
+      <li><a href="#exp-edu" class="nav-link">Education</a></li>
+      <li><a href="#contact" class="nav-link">Contact</a></li>
+    </ul>
+
+    <div>
+      <button class="btn-secondary" onclick="openResumeModal()" style="padding: 6px 14px; font-size: 0.8rem;">
+        Resume PDF
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <!-- FULL-SCREEN STACKED HERO PANELS -->
+    <div class="hero-stacked-wrapper" id="home">
+
+      <!-- STACK 1: IDENTITY -->
+      <section class="hero-stack-panel stack-1" id="stack-1">
+        
+        <h1 class="stack-title">Hello,<br>I'm Sameera.<br>TL;DR; Curiosity. Hardwork. And Repeat</h1>
+        <p class="stack-subtitle">
+          Final-year Information Technology student interested in <strong>Backend Engineering</strong> • <strong>Software Engineering</strong> • <strong>Developer Tools</strong> • <strong>System Design</strong> •<strong>Practical AI</strong>
+        </p>
+        <div style="display:flex; gap:16px;">
+          <a href="#projects" class="btn-primary">Explore Projects</a>
+          <button class="btn-secondary" onclick="openResumeModal()">Download Resume</button>
+        </div>
+      </section>
+
+      <!-- STACK 2: FLOATING TECH ECOSYSTEM -->
+      <section class="hero-stack-panel stack-2" id="stack-2">
+       
+        <h2 class="section-title" style="margin-bottom:8px;">Technologies I Enjoy Working With</h2>
+        <p class="section-desc" style="text-align:center;">Hover any chip to reveal details and associated projects.</p>
+
+        <div class="floating-tech-grid">
+          <div class="floating-tech-chip" data-cursor-type="chip">
+            Java
+            <div class="chip-tooltip">DSA • OOP • SpringBoot</div>
+          </div>
+          <div class="floating-tech-chip" data-cursor-type="chip">
+            Node.js
+            <div class="chip-tooltip">Backend APIs • RoutePay • Ecoride</div>
+          </div>
+          <div class="floating-tech-chip" data-cursor-type="chip">
+            Express
+            <div class="chip-tooltip">REST APIs • Routing • Middleware</div>
+          </div>
+          <div class="floating-tech-chip" data-cursor-type="chip">
+            React
+            <div class="chip-tooltip">Frontend Applications • Stackread</div>
+          </div>
+          <div class="floating-tech-chip" data-cursor-type="chip">
+            Redis
+            <div class="chip-tooltip">Idempotency & Caching</div>
+          </div>
+          <div class="floating-tech-chip" data-cursor-type="chip">
+            MySQL
+            <div class="chip-tooltip">DBMS • Relational Database</div>
+          </div>
+          <div class="floating-tech-chip" data-cursor-type="chip">
+            Docker
+            <div class="chip-tooltip">Containerized Microservices</div>
+          </div>
+          <div class="floating-tech-chip" data-cursor-type="chip">
+            AWS
+            <div class="chip-tooltip">Cloud Infrastructure Basics</div>
+          </div>
+          <div class="floating-tech-chip" data-cursor-type="chip">
+            Git
+            <div class="chip-tooltip">Version Control & Open Source</div>
+          </div>
+          <div class="floating-tech-chip" data-cursor-type="chip">
+            Linux
+            <div class="chip-tooltip">Environment Administration & CLI</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- STACK 3: WHAT I LIKE BUILDING -->
+      <!--removed-->
+          <!--Stack 4-->
+        <section class="hero-stack-panel stack-4" id="stack-4">
+            <h2 class="section-title">Beyond the Code</h2>
+            <p class="section-desc">
+                A few things I enjoy when I'm away from my editor.
+            </p>
+            <div class="explore-grid">
+                <!-- Reading -->
+                <div class="explore-card">
+                    <span class="explore-title">reading.md</span>
+                    <h4>Currently Reading</h4>
+                    <p>Think Again By Adam Grant</p>
+                    <h4>Favorite Genres</h4>
+                    <p>Self-improvement • Mystery • Science Fiction</p>
+                </div>
+                <!-- Music -->
+                <div class="explore-card">
+                    <span class="explore-title">music.md</span>
+                    <h4>On Repeat</h4>
+                    <p>Coldplay • The Weeknd • Linkin Park • Queen • Old 9XM hits</p>
+                </div>
+
+                <!-- Formula 1 -->
+                <div class="explore-card">
+                    <span class="explore-title">formula1.md</span>
+                    <h4>Weekend Ritual</h4>
+                    <p>Race weekends are usually reserved for Formula 1..</p>
+                </div>
+
+                <!-- Travel -->
+                <div class="explore-card">
+                    <span class="explore-title">travel.md</span>
+                    <h4>Places I Enjoy</h4>
+                    <p>Road trips, mountains, historic sites, and exploring new cities.</p>
+                </div>
+
+                <!-- Random Curiosity -->
+                <div class="explore-card">
+                    <span class="explore-title">curiosity.md</span>
+                    <h4>Random Rabbit Holes</h4>
+                    <p>Space, psychology, history, politics, economics, and the "why" behind how things work.</p>
+                </div>
+            </div>
+          </div>
+        </section>
+
+    <!-- MAIN PORTFOLIO SECTIONS -->
+    <!-- ABOUT SECTION -->
+    <section id="about">
+      <div class="container">
+        <div class="about-content-wrapper">
+          <div class="section-header">
+            <h2 class="section-title">About Me</h2>
+            <p class="section-desc">My engineering story, core principles, and timeline.</p>
+          </div>
+
+          <div class="about-hero-row">
+            <div class="about-photo">
+                <img src="images/myphoto_portfolio.jpeg" alt="Sameera Pujari">
+            </div>
+            <div class="story-text">
+              What keeps me interested in software engineering is that there's always something new to understand. One day it might be debugging a tricky issue, another day it could be learning a new framework or figuring out why a system is designed a certain way. That's what keeps me excited to keep building. </div>
+          </div>
+
+          <!-- Three Principles Only -->
+          <div class="three-principles-row">
+            <div class="glass-card card-sm principle-box">
+              <h3 class="principle-name">Growth</h3>
+              <p class="principle-desc">Every day is a chance to learn, evolve, and become a little better than yesterday.</p>
+            </div>
+            <div class="glass-card card-sm principle-box">
+              <h3 class="principle-name">Perspective</h3>
+              <p class="principle-desc">I enjoy exploring ideas, asking questions, and understanding how things work.</p>
+            </div>
+            <div class="glass-card card-sm principle-box">
+              <h3 class="principle-name">Balance</h3>
+              <p class="principle-desc">Learning from different ideas, experiences, and ways of thinking.</p>
+            </div>
+          </div>
+
+          <!-- Engineering Timeline -->
+          <div class="timeline-container">
+            <div class="timeline-step">
+              <div class="timeline-dot"></div>
+              <div class="timeline-year">2022</div>
+              <h4 class="timeline-title">Started with Web Development</h4>
+              <p class="timeline-desc">Learned HTML, CSS, Designing, Made my first ever Webpages</p>
+            </div>
+
+            <div class="timeline-step">
+              <div class="timeline-dot"></div>
+              <div class="timeline-year">2023</div>
+              <h4 class="timeline-title">Programming & Core CS</h4>
+              <p class="timeline-desc">Programming journey started with C & C++ and quickly became interested in learning fundamentals</p>
+            </div>
+
+            <div class="timeline-step">
+              <div class="timeline-dot"></div>
+              <div class="timeline-year">2024</div>
+              <h4 class="timeline-title">Projects and Teamwork</h4>
+              <p class="timeline-desc">Applied classroom concepts through projects, learning Git, exploring hackathons, and collaborative development.</p>
+            </div>
+
+            <div class="timeline-step">
+              <div class="timeline-dot"></div>
+              <div class="timeline-year">2025</div>
+              <h4 class="timeline-title">Focus shifted to Backend Dev</h4>
+              <p class="timeline-desc">Spent months solving DSA, while also developed projects involving APIs, authentication, databases, and learn system design</p>
+            </div>
+
+            <div class="timeline-step">
+              <div class="timeline-dot"></div>
+              <div class="timeline-year">Late 2025 - Present</div>
+              <h4 class="timeline-title">Open Source & SDE Preparation</h4>
+              <p class="timeline-desc">Exploring open source contributions and actively preparing for Software Engineering placements.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILLS SECTION -->
+    <section id="skills">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Tech Stack In Action</h2>
+          <p class="section-desc">Click any technology to highlight associated projects.</p>
+        </div>
+
+        <div class="skills-grouped-grid">
+          <div class="glass-card card-md">
+            <h3 class="stack-group-title">Languages</h3>
+            <div class="stack-nodes-list">
+              <span class="skill-node" onclick="highlightSkillProjects('Java', this)">Java</span>
+              <span class="skill-node" onclick="highlightSkillProjects('Python', this)">Python</span>
+              <span class="skill-node" onclick="highlightSkillProjects('C++', this)">C++</span>
+              <span class="skill-node" onclick="highlightSkillProjects('JavaScript', this)">JavaScript</span>
+            </div>
+          </div>
+
+          <div class="glass-card card-md">
+            <h3 class="stack-group-title">Backend and Databases</h3>
+            <div class="stack-nodes-list">
+              <span class="skill-node" onclick="highlightSkillProjects('Node.js', this)">Node.js</span>
+              <span class="skill-node" onclick="highlightSkillProjects('Express', this)">Express</span>
+              <span class="skill-node" onclick="highlightSkillProjects('REST APIs', this)">REST APIs</span>
+              <span class="skill-node" onclick="highlightSkillProjects('JWT', this)">JWT</span>
+              <span class="skill-node" onclick="highlightSkillProjects('MySQL', this)">MySQL</span>
+              <span class="skill-node" onclick="highlightSkillProjects('Redis', this)">Redis</span>
+              <span class="skill-node" onclick="highlightSkillProjects('MongoDB', this)">MongoDB</span>
+            </div>
+          </div>
+
+          <div class="glass-card card-md">
+            <h3 class="stack-group-title">Frontend</h3>
+            <div class="stack-nodes-list">
+              <span class="skill-node" onclick="highlightSkillProjects('React', this)">React</span>
+              <span class="skill-node" onclick="highlightSkillProjects('HTML', this)">HTML</span>
+              <span class="skill-node" onclick="highlightSkillProjects('CSS', this)">CSS</span>
+              <span class="skill-node" onclick="highlightSkillProjects('Tailwind CSS', this)">Tailwind CSS</span>
+            </div>
+          </div>
+
+          <div class="glass-card card-md">
+            <h3 class="stack-group-title">AI & ML</h3>
+            <div class="stack-nodes-list">
+              <span class="skill-node" onclick="highlightSkillProjects('Deep Learning', this)">Deep Learning</span>
+              <span class="skill-node" onclick="highlightSkillProjects('Model Training', this)">Model Training</span>
+              <span class="skill-node" onclick="highlightSkillProjects('PyTorch', this)">PyTorch</span>
+              <span class="skill-node" onclick="highlightSkillProjects('Generative AI', this)">Generative AI</span>
+            </div>
+          </div>
+
+          <div class="glass-card card-md">
+            <h3 class="stack-group-title">Tools</h3>
+            <div class="stack-nodes-list">
+              <span class="skill-node" onclick="highlightSkillProjects('Git', this)">Git</span>
+              <span class="skill-node" onclick="highlightSkillProjects('GitHub', this)">GitHub</span>
+              <span class="skill-node" onclick="highlightSkillProjects('Docker', this)">Docker</span>
+              <span class="skill-node" onclick="highlightSkillProjects('Linux', this)">Linux</span>
+              <span class="skill-node" onclick="highlightSkillProjects('AWS', this)">AWS</span>
+              <span class="skill-node" onclick="highlightSkillProjects('PostMan', this)">Postman</span>
+              <span class="skill-node" onclick="highlightSkillProjects('Calude', this)">Claude</span>
+            </div>
+          </div>
+
+          <div class="glass-card card-md" style="border-color: rgba(56, 189, 248, 0.3);">
+            <h3 class="stack-group-title" style="color:var(--accent-cyan)">Currently Learning</h3>
+            <div class="stack-nodes-list">
+              <span class="skill-node" style="border-color:var(--accent-cyan)">.Net</span>
+              <span class="skill-node" style="border-color:var(--accent-cyan)">System Design</span>
+              <span class="skill-node" style="border-color:var(--accent-cyan)">Docker and CI/CD</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS SECTION -->
+    <section id="projects">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Projects</h2>
+        </div>
+
+        <div class="projects-grid" id="projects-grid">
+          <!-- Rendered dynamically in app.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE + EDUCATION -->
+    <section id="exp-edu">
+      <div class="container">
+        <div class="exp-edu-wrapper">
+          <div class="section-header">
+            <h2 class="section-title">Education</h2>
+            <p class="section-desc">Academic foundation behind my software engineering journey.</p>
+          </div>
+ <!--
+          <div class="glass-card card-md exp-edu-card">
+            <div class="exp-edu-header">
+              <div>
+                <h3 class="exp-edu-role">Software Engineering Intern</h3>
+                <div class="exp-edu-company">TechSolutions Inc.</div>
+              </div>
+              <span class="exp-edu-date">May 2025 - Aug 2025</span>
+            </div>
+            <ul style="padding-left: 20px; font-size: var(--fs-body); color: var(--text-muted);">
+              <li>Refactored REST endpoints into Node.js containerized microservices.</li>
+              <li>Integrated Redis caching layer, reducing frequent database query latency.</li>
+              <li>Configured GitHub Actions CI/CD automated build pipelines.</li>
+            </ul>
+          </div>
+
+          <div class="glass-card card-md exp-edu-card">
+            <div class="exp-edu-header">
+              <div>
+                <h3 class="exp-edu-role">Open Source Core Contributor</h3>
+                <div class="exp-edu-company">GitHub Open Source Repositories</div>
+              </div>
+              <span class="exp-edu-date">2024 - Present</span>
+            </div>
+            <p style="font-size: var(--fs-body); color: var(--text-muted);">Contributed bug fixes, performance optimizations, and documentation to open-source developer tooling.</p>
+          </div> -->
+
+          <div class="glass-card card-md exp-edu-card">
+            <div class="exp-edu-header">
+              <div>
+                <h3 class="exp-edu-role">Bachelor of Technology (B.Tech) in Information Technology</h3>
+                <div class="exp-edu-company">Vishwakarma Institute of Technology, Pune</div>
+              </div>
+              <span class="exp-edu-date">2023 - 2027</span>
+            </div>
+            <p style="color: var(--accent-cyan); font-weight: 600; margin-bottom: 6px;">CGPA: 8.99 / 10.0</p>
+            <p style="font-size: var(--fs-caption); color: var(--text-muted);">Relevant Coursework: Data Structures & Algorithms, Operating Systems, Object Oriented Programming, Database Management Systems, Computer Networks, Software Engineering.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <div class="container">
+        <div class="glass-card card-lg contact-wrapper">
+          <h2 class="section-title">Let's Connect</h2>
+          <p class="section-desc" style="margin: 0 auto 20px;">Thank you for taking the time to explore my portfolio!</p>
+
+          <div style="margin-bottom: 24px;">
+            <span style="font-family:var(--font-code); font-size:var(--fs-caption); color:var(--text-muted);">Open for:</span>
+            <div style="display:flex; justify-content:center; flex-wrap:wrap; gap:8px; margin-top:8px;">
+              <span class="stack-pill" style="color:var(--accent-green)">✔ Software Engineering Internships</span>
+              <span class="stack-pill" style="color:var(--accent-green)">✔ Backend Internship</span>
+              <span class="stack-pill" style="color:var(--accent-green)">✔ Open Source Collaboration</span>
+            </div>
+          </div>
+
+          <div class="contact-links-row">
+            <a href="mailto:sameerapujari.15@gmail.com" class="btn-primary" data-cursor-type="link">✉️ Email Me</a>
+            <a href="https://www.linkedin.com/in/sameera-pujari-036974283" target="_blank" rel="noopener" class="btn-secondary" data-cursor-type="link">LinkedIn</a>
+            <a href="https://github.com/sameerapujari" target="_blank" rel="noopener" class="btn-secondary" data-cursor-type="link">GitHub</a>
+            <button class="btn-secondary" onclick="openResumeModal()">Resume PDF</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- HANDCRAFTED FOOTER -->
+  <footer>
+    <div class="container footer-content">
+      <div>
+        <p style="font-weight:600; color:var(--text-main);">Designed & Built by Sameera 🤍 </p>
+      </div>
+
+      <div style="display:flex; align-items:center; gap:16px;">
+        <a href="https://github.com/sameerapujari" target="_blank" rel="noopener" data-cursor-type="link">GitHub</a>
+        <a href="https://www.linkedin.com/in/sameera-pujari-036974283" target="_blank" rel="noopener" data-cursor-type="link">LinkedIn</a>
+        <a href="mailto:sameerapujari.15@gmail.com" data-cursor-type="link">Email</a>
+        <span style="color:var(--text-dim); font-size:0.8rem;">© 2026 Sameera</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- UNIFIED CASE STUDY MODAL -->
+  <div class="modal-backdrop" id="case-study-modal">
+    <div class="modal-content">
+      <button class="modal-close-btn" onclick="closeModal()">✕</button>
+      <div id="modal-body-container">
+        <!-- Rendered dynamically in app.js -->
+      </div>
+    </div>
+  </div>
+
+  <!-- RESUME MODAL -->
+  <div class="modal-backdrop" id="resume-modal">
+    <div class="modal-content" style="max-width: 650px;">
+      <button class="modal-close-btn" onclick="closeResumeModal()">✕</button>
+      <h3 style="margin-bottom: 10px;">Sameera — Software Engineer Resume</h3>
+      <p style="font-size: var(--fs-caption); color: var(--text-muted); margin-bottom: 16px;">My latest resume for Software Engineering and Backend roles.</p>
+      <div style="background: #0A0A0C; border: 1px solid var(--border-color); padding: 16px; border-radius: 8px; font-family: var(--font-code); font-size: var(--fs-code); margin-bottom: 16px;">
+        <p style="color: var(--accent-cyan); font-weight: 700;">SUMMARY:</p>
+        <p style="color: #E2E8F0; margin-bottom: 12px;">Final-Year BTech IT (CGPA 8.99). Solved 500+ LeetCode problems (1490 contest rating). Interested in backend engineering, distributed systems, APIs, and practical AI applications.</p>
+      </div>
+      <div style="display: flex; justify-content: flex-end; gap: 10px;">
+        <button class="btn-secondary" onclick="closeResumeModal()">Close</button>
+        <a href="Resume.pdf" class="btn-primary" onclick="alert('Downloading Sameera_Resume.pdf')">Download PDF</a>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>
+    lucide.createIcons();
+  </script>
+</body>
+</html>
