@@ -55,6 +55,8 @@ function initBootScreen() {
 
 // --- 2. ENHANCED DUAL CUSTOM CURSOR (DOT + RING) ---
 function initCustomCursor() {
+  if (window.matchMedia('(pointer: coarse)').matches) return;
+
   const dot = document.getElementById('custom-cursor-dot');
   const ring = document.getElementById('custom-cursor-ring');
   if (!dot || !ring) return;
@@ -123,6 +125,8 @@ document.head.appendChild(style);
 
 // --- 3. LIGHTWEIGHT CANVAS PARTICLES ---
 function initCanvasBackground() {
+  if (window.matchMedia('(pointer: coarse)').matches) return;
+
   const canvas = document.getElementById('bg-canvas');
   const ctx = canvas.getContext('2d');
 
@@ -551,11 +555,42 @@ function closeResumeModal() {
   document.getElementById('resume-modal').classList.remove('active');
 }
 
+// --- 6. MOBILE MENU TOGGLE ---
+function initMobileMenu() {
+  const menuBtn = document.getElementById('mobile-menu-btn');
+  const navMenu = document.getElementById('nav-menu');
+  
+  if (menuBtn && navMenu) {
+    let isOpen = false;
+    menuBtn.addEventListener('click', () => {
+      isOpen = !isOpen;
+      navMenu.classList.toggle('active');
+      menuBtn.innerHTML = isOpen 
+        ? '<i data-lucide="x"></i>' 
+        : '<i data-lucide="menu"></i>';
+      lucide.createIcons();
+    });
+
+    // Close menu when clicking a link
+    navMenu.querySelectorAll('.nav-link').forEach(link => {
+      link.addEventListener('click', () => {
+        if (isOpen) {
+          isOpen = false;
+          navMenu.classList.remove('active');
+          menuBtn.innerHTML = '<i data-lucide="menu"></i>';
+          lucide.createIcons();
+        }
+      });
+    });
+  }
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   initBootScreen();
   initCustomCursor();
   initCanvasBackground();
   renderProjects();
+  initMobileMenu();
 
   const stack4=document.querySelector("#stack-4");
     const cards=document.querySelectorAll("#stack-4 .explore-card");
@@ -581,10 +616,8 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
     },{
-
-        threshold:.4
-
+        threshold: .1
     });
 
-    observer.observe(stack4);
+    if(stack4) observer.observe(stack4);
 });

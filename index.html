@@ -48,7 +48,7 @@
       <span>sameera<span style="color:var(--primary)">.dev</span></span>
     </a>
 
-    <ul class="nav-menu">
+    <ul class="nav-menu" id="nav-menu">
       <li><a href="#about" class="nav-link">About</a></li>
       <li><a href="#skills" class="nav-link">Skills</a></li>
       <li><a href="#projects" class="nav-link">Projects</a></li>
@@ -56,11 +56,15 @@
       <li><a href="#contact" class="nav-link">Contact</a></li>
     </ul>
 
-    <div>
+    <div class="nav-resume-btn-container">
       <button class="btn-secondary" onclick="openResumeModal()" style="padding: 6px 14px; font-size: 0.8rem;">
         Resume PDF
       </button>
     </div>
+
+    <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Toggle Navigation">
+      <i data-lucide="menu"></i>
+    </button>
   </header>
 
   <main>
@@ -74,7 +78,7 @@
         <p class="stack-subtitle">
           Final-year Information Technology student interested in <strong>Backend Engineering</strong> • <strong>Software Engineering</strong> • <strong>Developer Tools</strong> • <strong>System Design</strong> •<strong>Practical AI</strong>
         </p>
-        <div style="display:flex; gap:16px;">
+        <div class="hero-buttons-row">
           <a href="#projects" class="btn-primary">Explore Projects</a>
           <button class="btn-secondary" onclick="openResumeModal()">Download Resume</button>
         </div>
